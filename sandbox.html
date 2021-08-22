@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Testing Notificationer</title>
+    <link rel="stylesheet" href="./sandbox.css">
+</head>
+<body>
+    <div style='padding: 10px 5%'>
+        <h1>Notificationer Code Sandbox</h1>
+        <p>Write code in the editor and click <button class='runBtn'>Run</button></p>
+        <div>import  *  as  nf  from  './notificationer.js';</div>
+<textarea id='codeEditor' cols='75' rows='7'>nf.config('bottom-right');
+nf.notify('Hello world');
+nf.notify('Success', 'green');
+nf.notify('Confirmation required <button>confirm</button>', 'red');</textarea>
+
+        <button class='runBtn'>Run</button>
+    </div>
+    <script type='module' src="./sandbox.js"></script>
+</body>
+</html>

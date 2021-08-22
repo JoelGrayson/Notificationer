@@ -1,4 +1,16 @@
-function config() {
+let xDirection; //left or right for closing direction
+
+export function config(direction='bottom-right') {
+    //Add in header: <link rel='stylesheet' href='./notificationer.css'>
+    let linkEl=document.createElement('link');
+    linkEl.rel='stylesheet';
+    linkEl.href='./notificationer.css';
+    document.head.appendChild(linkEl);
+    let directionLinkEl=document.createElement('link');
+    directionLinkEl.rel='stylesheet';
+    directionLinkEl.href=`./direction/${direction}.css`;
+    document.head.appendChild(directionLinkEl);
+
     /* Creates in body:
     <div id='notifications-container'>
         <!-- ... -->
@@ -6,14 +18,15 @@ function config() {
     let notificationsContainerEl=document.createElement('div');
     notificationsContainerEl.id='notifications-container';
     document.body.appendChild(notificationsContainerEl);
+
+    xDirection=direction.match(/\w+-(\w+)/)[1];
 }
-function notification(content, color='yellow') {
+export function notify(content, color='yellow') {
     const notificationEl=document.createElement('div');
     let id='notification-'+new Date().getTime().toString().slice(-6); //time makes notification's id unique
     notificationEl.id=id;
     notificationEl.classList.add('notification');
     notificationEl.classList.add(`notification-${color}`); //notification color
-    notificationEl.style.right='15px';
     
     let closeIcon=document.createElement('button');
     closeIcon.innerHTML='X';
@@ -32,11 +45,15 @@ function notification(content, color='yellow') {
     notificationContentEl.innerHTML=content;
     notificationEl.appendChild(notificationContentEl);
     
-    document.getElementById('insert-notifications').appendChild(notificationEl);
+    document.getElementById('notifications-container').appendChild(notificationEl);
 }
-function closeNotification(notificationEl) {
-    notificationEl.style.right='-500px';
+export function closeNotification(notificationEl) {
+    if (xDirection==='left')
+        notificationEl.style.left='-320px';
+    else if (xDirection==='right')
+        notificationEl.style.right='-320px';
+
     setTimeout(()=>{
         notificationEl.parentNode.removeChild(notificationEl);
-    }, 1000); //remove after transition
+    }, 500); //remove after transition
 }

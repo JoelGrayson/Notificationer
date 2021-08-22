@@ -1,28 +1,22 @@
-#insert-notifications {
+#notifications-container {
+    height: 98vh;
     position: absolute;
-    bottom: 15px;
-    right: 15px; /* -500px to hide */
-    width: 300px;
-    height: 100vh;
-    width: 200px;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    z-index: -1; /* Does not overlap other items */
 }
 .notification {
     display: flex;
+    z-index: 2; /* Display notifications above other items */
     position: relative;
     align-items: center;
     justify-content: space-around;
+    margin-top: 6px;
+    word-break: break-word;
     
     border-radius: 8px;
     font-size: 18px;
     padding: 15px 15px 15px 10px;
-    text-emphasis: bold;
     
-    transition: all;
-    transition-duration: 0.7s;
+    transition: left 0.5s, right 0.5s;
 }
 .notification-yellow {
     background-image: linear-gradient(134deg, #f9c44d, #ff7905);
@@ -36,8 +30,15 @@
     background-image: linear-gradient(134deg, #ff6060, #f43434);
     border: 1px solid darkred;
 }
+.notification-blue {
+    background-image: linear-gradient(134deg, #6096FF, #3B7FF9);
+    border: 1px solid blue;
+}
 #notification img {
     height: 60px;
+}
+.notification-content {
+    padding-right: 21px; /* Not collide with [x] */
 }
 .icon-close {
     position: absolute;

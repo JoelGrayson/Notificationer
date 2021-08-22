@@ -1,8 +1,14 @@
 let xDirection; //left or right for closing direction
 let packageUrl='https://w.joelgrayson.com/notificationer';
-let notificationNum=1;
+let notificationNum=1; //ensures each notification has unique id
+let autocloseOnOff=true;
+let autocloseDurationMillis=6000;
 
-export function config(direction='bottom-right') {
+export function config(options={
+        direction:'bottom-right',
+        autoclose: true,
+        autocloseDuration: 6
+    }) {
     //Add in header: <link rel='stylesheet' href='./notificationer.css'>
     let linkEl=document.createElement('link');
     linkEl.rel='stylesheet';
@@ -10,7 +16,7 @@ export function config(direction='bottom-right') {
     document.head.appendChild(linkEl);
     let directionLinkEl=document.createElement('link');
     directionLinkEl.rel='stylesheet';
-    directionLinkEl.href=`${packageUrl}/direction/${direction}.css`;
+    directionLinkEl.href=`${packageUrl}/direction/${options.direction}.css`;
     document.head.appendChild(directionLinkEl);
 
     /* Creates in body:
@@ -21,13 +27,17 @@ export function config(direction='bottom-right') {
     notificationsContainerEl.id='notifications-container';
     document.body.appendChild(notificationsContainerEl);
 
-    xDirection=direction.match(/\w+-(\w+)/)[1];
+    xDirection=options.direction.match(/\w+-(\w+)/)[1];
+    if ('autoclose' in options)
+        autocloseOnOff=options.autoclose;
+    if ('autocloseDuration' in options)
+        autocloseDurationMillis=options.autocloseDuration*1000;
 }
 export function notify(content, color='yellow') {
     const notificationEl=document.createElement('div');
     let id=`notification-${notificationNum}`
     notificationEl.id=id;
-    notificationNum++; //ensures each notification has unique id
+    notificationNum++;
     notificationEl.classList.add('notification');
     notificationEl.classList.add(`notification-${color}`); //notification color
     
@@ -36,11 +46,15 @@ export function notify(content, color='yellow') {
     closeIcon.classList.add('icon-close');
     closeIcon.addEventListener('click', ()=>{
         close(id);
-        clearTimeout(autoClose); //stops timeout() from auto-closing after user already closed
+        if (autocloseOnOff)
+            clearTimeout(autocloseTimeout); //stops timeout() from auto-closing after user already closed
     });
-    let autoClose=setTimeout(()=>{
-        close(id);
-    }, 6000);
+    let autocloseTimeout;
+    if (autocloseOnOff) {
+        autocloseTimeout=setTimeout(()=>{
+            close(id);
+        }, autocloseDurationMillis);
+    }
     notificationEl.appendChild(closeIcon);
 
     const notificationContentEl=document.createElement('span');

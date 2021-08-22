@@ -1,7 +1,7 @@
 # Notificationer
 > An easy-to-use lightweight notification UI for client-side JavaScript.
 
-### Using Notificationer
+## Using Notificationer
 Notificationer can be used in client-side javascript. Make sure to set the script with `type='module'`.
 
 ```html
@@ -14,11 +14,23 @@ Notificationer can be used in client-side javascript. Make sure to set the scrip
 </script>
 ```
 
-### Full Documentation
-`nf.config(direction: string)` sets the direction and can only be called once.
-`nf.notify(contentHTML: string, color?: string)` displays the HTML string. The notification's color is yellow by default.
+## Full Documentation
+* `nf.config(direction: string)` sets the direction and can only be called once.
+* `nf.notify(contentHTML: string, color?: string)`
+	* contentHTML is the notification's content.
+	* color is 'yellow' by default.
+	* returns the notification's id
+* `nf.close(id: string)` closes the notification with the passed-in id (example below)
+* `nf.closeAll()` removes all the notifications.
 
-### Demo
+## Demos
+### Sandbox Interactive Demo
 Try the code sandbox at https://w.joelgrayson.com/notificationer/sandbox.html.
 
 <iframe  src='https://w.joelgrayson.com/notificationer/sandbox.html'  width='800px'  height='500px'></iframe>
+
+### Example: Notify() & Close()
+```javascript
+let errorNotificationId=nf.notify('Error', 'red'); //store notification id
+nf.close(errorNotificationId); //close notification
+```

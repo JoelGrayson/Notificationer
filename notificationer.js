@@ -1,5 +1,6 @@
 let xDirection; //left or right for closing direction
 let packageUrl='https://w.joelgrayson.com/notificationer';
+let notificationNum=1;
 
 export function config(direction='bottom-right') {
     //Add in header: <link rel='stylesheet' href='./notificationer.css'>
@@ -24,8 +25,9 @@ export function config(direction='bottom-right') {
 }
 export function notify(content, color='yellow') {
     const notificationEl=document.createElement('div');
-    let id='notification-'+new Date().getTime().toString().slice(-6); //time makes notification's id unique
+    let id=`notification-${notificationNum}`
     notificationEl.id=id;
+    notificationNum++; //ensures each notification has unique id
     notificationEl.classList.add('notification');
     notificationEl.classList.add(`notification-${color}`); //notification color
     
@@ -33,11 +35,11 @@ export function notify(content, color='yellow') {
     closeIcon.innerHTML='X';
     closeIcon.classList.add('icon-close');
     closeIcon.addEventListener('click', ()=>{
-        closeNotification(notificationEl);
+        close(id);
         clearTimeout(autoClose); //stops timeout() from auto-closing after user already closed
     });
     let autoClose=setTimeout(()=>{
-        closeNotification(notificationEl);
+        close(id);
     }, 6000);
     notificationEl.appendChild(closeIcon);
 
@@ -45,10 +47,13 @@ export function notify(content, color='yellow') {
     notificationContentEl.classList.add('notification-content');
     notificationContentEl.innerHTML=content;
     notificationEl.appendChild(notificationContentEl);
-    
+
     document.getElementById('notifications-container').appendChild(notificationEl);
+    return id;
 }
-export function closeNotification(notificationEl) {
+export function close(id) {
+    const notificationEl=document.getElementById(id);
+
     if (xDirection==='left')
         notificationEl.style.left='-320px';
     else if (xDirection==='right')
@@ -57,4 +62,10 @@ export function closeNotification(notificationEl) {
     setTimeout(()=>{
         notificationEl.parentNode.removeChild(notificationEl);
     }, 500); //remove after transition
+}
+export function closeAll() {
+    let notifications=document.getElementsByClassName('notification');
+    for (let i=0; i<notifications.length; i++) {
+        close(notifications[i].id);
+    }
 }

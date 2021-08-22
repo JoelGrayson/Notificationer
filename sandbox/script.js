@@ -1,7 +1,6 @@
-import * as nf from './notificationer.js';
+import * as nf from 'https://w.joelgrayson.com/notificationer/notificationer.js';
 
 const defaultHead=document.head.innerHTML;
-console.log(defaultHead);
 const codeEditorTextarea=document.getElementById('codeEditor');
 const runBtn=document.getElementById('runBtn');
 function run() {

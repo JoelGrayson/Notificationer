@@ -1,20 +1,8 @@
-#codeEditor {
+.codeEditor {
     background-color: #282c34;
     color: #ececff;
     padding: 5px;
 }
-button {
-    background-color: #e1e5ed;
-    border: 1px solid #000;
-    border-radius: 3px;
-    padding: 5px 10px;
-}
-button:hover {
-	background-color: #c4c9d3;
-    outline: 2px solid #111;
-    outline-offset: -2px;
-}
-button:active {
-	position: relative;
-	top: 1px;
+.runBtn {
+    margin: 0 auto;
 }

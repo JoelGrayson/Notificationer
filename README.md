@@ -34,7 +34,7 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start.jpg
 * `nf.autocloseDuration(seconds: number)` sets time before a notification closes automatically (default: 6)
 
 ## Demos
-#### Sandbox Interactive Demo
+#### Interactive Sandbox
 Try the code sandbox at https://w.joelgrayson.com/notificationer/sandbox.
 
 <iframe src='https://w.joelgrayson.com/notificationer/sandbox' width='800px' height='500px'></iframe>

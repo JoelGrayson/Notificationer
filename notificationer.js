@@ -1,14 +1,15 @@
 let xDirection; //left or right for closing direction
+let packageUrl='https://w.joelgrayson.com/notificationer';
 
 export function config(direction='bottom-right') {
     //Add in header: <link rel='stylesheet' href='./notificationer.css'>
     let linkEl=document.createElement('link');
     linkEl.rel='stylesheet';
-    linkEl.href='./notificationer.css';
+    linkEl.href=`${packageUrl}/notificationer.css`;
     document.head.appendChild(linkEl);
     let directionLinkEl=document.createElement('link');
     directionLinkEl.rel='stylesheet';
-    directionLinkEl.href=`./direction/${direction}.css`;
+    directionLinkEl.href=`${packageUrl}/direction/${direction}.css`;
     document.head.appendChild(directionLinkEl);
 
     /* Creates in body:

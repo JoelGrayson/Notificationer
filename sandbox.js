@@ -1,4 +1,4 @@
-import  *  as  nf  from  './notificationer.js';
+import * as nf from './notificationer.js';
 
 const defaultHead=document.head.innerHTML;
 console.log(defaultHead);

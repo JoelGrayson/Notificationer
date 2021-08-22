@@ -1,14 +1,24 @@
 # Notificationer
 > An easy-to-use lightweight notification UI for client-side JavaScript.
 
-### Getting Started
-1. Install through node: `npm i notificationer`
-2. Import the package into your JS code:
-`import  *  as  nf  from  './notificationer.js';`
-3. Pick a corner (top-left, top-right, bottom-left, bottom-right) for the notifications and run .config()
-`nf.config('bottom-right')`
-4. `notify(contentHTML: string, color?: string)` takes in HTML content and a color parameter (default is yellow).
+### Using Notificationer
+Notificationer can be used in client-side javascript. Make sure to set the script with `type='module'`.
+
+```html
+<script type='module'>
+	import * as nf from 'https://w.joelgrayson.com/notificationer/notificationer.js'; //Import notificationer
+	nf.config('bottom-right'); //Configure with a corner (top-left, top-right, bottom-left, bottom-right)
+	nf.notify('Hello world');
+	nf.notify('Success', 'green');
+	nf.notify('Confirmation required <button>confirm</button>', 'red');
+</script>
+```
+
+### Full Documentation
+`nf.config(direction: string)` sets the direction and can only be called once.
+`nf.notify(contentHTML: string, color?: string)` displays the HTML string. The notification's color is yellow by default.
 
 ### Demo
 Try the code sandbox at https://w.joelgrayson.com/notificationer/sandbox.html.
-<iframe src='https://w.joelgrayson.com/notificationer/sandbox.html' width='800px' height='500px'></iframe>
+
+<iframe  src='https://w.joelgrayson.com/notificationer/sandbox.html'  width='800px'  height='500px'></iframe>

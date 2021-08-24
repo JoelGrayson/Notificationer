@@ -27,7 +27,11 @@ export function config(options={
     notificationsContainerEl.id='notifications-container';
     document.body.appendChild(notificationsContainerEl);
 
-    xDirection=options.direction.match(/\w+-(\w+)/)[1];
+    if ('direction' in options)
+        xDirection=options.direction.match(/\w+-(\w+)/)[1];
+    else
+        xDirection='right';
+    
     if ('autoclose' in options)
         autocloseOnOff=options.autoclose;
     if ('autocloseDuration' in options)

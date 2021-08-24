@@ -1,11 +1,9 @@
 #notifications-container {
     height: 98vh;
     position: absolute;
-    z-index: -1; /* Does not overlap other items */
 }
 .notification {
     display: flex;
-    z-index: 2; /* Display notifications above other items */
     position: relative;
     align-items: center;
     justify-content: space-around;

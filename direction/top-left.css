@@ -1,6 +1,7 @@
 #notifications-container {
     top: 10px;
     left: 0;
+    width: 300px;
     
     display: flex;
     flex-direction: column;
@@ -8,6 +9,5 @@
     justify-content: flex-start;
 }
 .notification {
-    left: 0; /* For transition */
-    margin-left: 10px;
+    left: 10px; /* For transition */
 }

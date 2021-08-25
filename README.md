@@ -26,7 +26,7 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start.jpg
 	```
 * `nf.notify(contentHTML: string, color?: string)`
 	* contentHTML is the notification's content.
-	* color is 'yellow' by default.
+	* color is 'yellow' by default. Color can be 'red', 'blue', 'green', or 'yellow'.
 	* returns the notification's id
 * `nf.close(id: string)` closes the notification with the passed-in id (example below)
 * `nf.closeAll()` removes all the notifications.

@@ -4,11 +4,15 @@ let notificationNum=1; //ensures each notification has unique id
 let autocloseOnOff=true;
 let autocloseDurationMillis=6000;
 
-export function config(options={
-        direction:'bottom-right',
-        autoclose: true,
-        autocloseDuration: 6
-    }) {
+export function config(options={ direction, autoclose, autocloseDuration }) {
+    options.direction??='bottom-right'; //if options.direction is not set, default to 'bottom-right'
+    options.autoclose??=true;
+    options.autocloseDuration??=6;
+
+    xDirection=options.direction.match(/\w+-(\w+)/)[1];
+    autocloseOnOff=options.autoclose;
+    autocloseDurationMillis=options.autocloseDuration*1000;
+
     //Add in header: <link rel='stylesheet' href='./notificationer.css'>
     let linkEl=document.createElement('link');
     linkEl.rel='stylesheet';
@@ -26,16 +30,6 @@ export function config(options={
     let notificationsContainerEl=document.createElement('div');
     notificationsContainerEl.id='notifications-container';
     document.body.appendChild(notificationsContainerEl);
-
-    if ('direction' in options)
-        xDirection=options.direction.match(/\w+-(\w+)/)[1];
-    else
-        xDirection='right';
-    
-    if ('autoclose' in options)
-        autocloseOnOff=options.autoclose;
-    if ('autocloseDuration' in options)
-        autocloseDurationMillis=options.autocloseDuration*1000;
 }
 export function notify(content, color='yellow') {
     const notificationEl=document.createElement('div');

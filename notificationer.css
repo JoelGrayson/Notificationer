@@ -1,6 +1,11 @@
 #notifications-container {
     height: 98vh;
     position: absolute;
+    pointer-events: none; /* Allows interaction with elements below notification-container */
+    overflow-x: hidden;
+}
+#notifications-container * {
+    pointer-events: all; /* Notification is clickable */
 }
 .notification {
     display: flex;
@@ -31,9 +36,6 @@
 .notification-blue {
     background-image: linear-gradient(134deg, #6096FF, #3B7FF9);
     border: 1px solid blue;
-}
-#notification img {
-    height: 60px;
 }
 .notification-content {
     padding-right: 21px; /* Not collide with [x] */

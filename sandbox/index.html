@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-    <title>Testing Notificationer</title>
-    <link rel='stylesheet' href='https://w.joelgrayson.com/ui/ucjg.css'>
-    <link rel="stylesheet" href="./style.css">
+    <title>Notificationer Code Sandbox</title>
+    <link rel='stylesheet' href='style.css'>
 </head>
 <body>
+    <h1></h1>
     <div style='padding: 10px 5%'>
         <h1>Notificationer Code Sandbox</h1>
         <p>Write code in the editor and click <button class='runBtn'>Run</button></p>
-        <div style='display: flex; flex-direction: column; max-width: 600px'>
-            <textarea cols='75' rows='1' class='codeEditor' readonly>import * as nf from 'https://w.joelgrayson.com/ui/ucjg.css';</textarea>
-    <textarea id='codeEditor' class='codeEditor' cols='75' rows='7'>nf.config({
-    direction: 'bottom-right'
-});
-nf.notify('Hello world');
-nf.notify('Success', 'green');
-nf.notify('Confirmation required <button>confirm</button>', 'red');</textarea>
+        <div id='container'>
+            <pre id='editor'>&lt;script src=&apos;https://w.joelgrayson.com/notificationer/notificationer.js&apos;&gt;&lt;/script&gt;
+&lt;script&gt;
+    config();
+    notify('Hello world');
+    notify('Success', 'green');
+    notify('Confirmation required <button>confirm</button>', 'red');
+&lt;/script&gt;</pre>
             <br>
-            <button class='runBtn'>Run</button>
+            <button class='runBtn' id='bottomRun'>Run</button>
         </div>
-
     </div>
-    <script type='module' src="./script.js"></script>
+    <script src='./ace-builds/src-min-noconflict/ace.js' type='text/javascript' charset='utf-8'></script>
+    <script src='./ace-builds/src-noconflict/keybinding-vscode.js' type='text/javascript' charset='utf-8'></script>
+    <script src='https://w.joelgrayson.com/notificationer/notificationer.js'></script>
+    <script src='./script.js'></script>
 </body>
 </html>

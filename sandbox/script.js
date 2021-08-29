@@ -1,13 +1,25 @@
-import * as nf from 'https://w.joelgrayson.com/notificationer/notificationer.js';
+let editor=ace.edit('editor');
+editor.setTheme('ace/theme/monokai');
+editor.session.setMode('ace/mode/html');
 
-const defaultHead=document.head.innerHTML;
-const codeEditorTextarea=document.getElementById('codeEditor');
+let aceEditor=window.ace.edit(document.getElementById('editor'));
+let defaultHead;
+setTimeout(()=>{
+    defaultHead=document.head.innerHTML;
+}, 400); //1 second delay for ace editor scripts to load
+
+
+// const codeEditorTextarea=document.getElementById('codeEditor');
 const runBtn=document.getElementById('runBtn');
 function run() {
     if (!!document.body.querySelector('#notifications-container')) //notifications container exists
         document.body.removeChild(document.getElementById('notifications-container')); //remove notifications container (to reset)
     document.head.innerHTML=defaultHead;
-    eval(codeEditorTextarea.value);
+    let editorVal=editor.getValue();
+    let startingIndex=editorVal.indexOf('<script>', 2)+'<script>'.length; //exclude `<script>` by adding .length
+    let endingIndex=editorVal.length-'</script>'.length;
+    let codeToRun=editorVal.substring(startingIndex, endingIndex); //second occurence of `</script>` EOF
+    eval(codeToRun);
 }
 let runBtns=document.getElementsByClassName('runBtn');
 for (let i=0; i<runBtns.length; i++)

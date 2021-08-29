@@ -214,48 +214,63 @@
       <div class="mume markdown-preview  ">
          <h1 class="mume-header" id="notificationer">Notificationer</h1>
          <blockquote>
-            <p>Notificationer non-intrusively notifies users from client-side JavaScript.</p>
+            <p>Easily notify your users from client-side JavaScript. It&apos;s as simple as calling the function <code>notify()</code>.</p>
          </blockquote>
          <h2 class="mume-header" id="quick-start">Quick Start</h2>
-         <p>Make sure to set the script with <code>type=&apos;module&apos;</code>.</p>
-         <pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&apos;</span>module<span class="token punctuation">&apos;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
-  <span class="token keyword module">import</span> <span class="token imports"><span class="token operator">*</span> <span class="token keyword module">as</span> nf</span> <span class="token keyword module">from</span> <span class="token string">&apos;https://w.joelgrayson.com/notificationer/notificationer.js&apos;</span><span class="token punctuation">;</span> <span class="token comment">//Import notificationer</span>
-  nf<span class="token punctuation">.</span><span class="token method function property-access">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//check full documentation&apos;s for config() options</span>
-  nf<span class="token punctuation">.</span><span class="token method function property-access">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Hello world&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  nf<span class="token punctuation">.</span><span class="token method function property-access">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Success&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;green&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  nf<span class="token punctuation">.</span><span class="token method function property-access">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Confirmation required &lt;button&gt;confirm&lt;/button&gt;&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;red&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <p>Add the following script to your HTML file <strong>before</strong> your own script tag(s):</p>
+         <pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&apos;</span>https://w.joelgrayson.com/notificationer/notificationer.js<span class="token punctuation">&apos;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre>
+         <p>Start with <code>config()</code>. Then, <code>notify()</code> as many times as you want. Check out the full documentation for more details.</p>
+         <pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&apos;</span>https://w.joelgrayson.com/notificationer/notificationer.js<span class="token punctuation">&apos;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+	<span class="token function">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//check full documentation for config() options</span>
+	<span class="token function">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Hello world&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Success&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;green&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Confirmation required &lt;button&gt;confirm&lt;/button&gt;&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;red&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 </pre>
          <p>Result: <img alt="result" src="https://w.joelgrayson.com/image/quick%20start.jpg" height="100px"></p>
          <h2 class="mume-header" id="full-documentation">Full Documentation</h2>
          <ul>
             <li>
-               <code>nf.config(options?)</code> configures the notification space and can only be called once. Below is the options object format:
+               <code>config(options?)</code> configures the notification space and can only be called once. Below is the options object format. If you leave out a property, and it will be set to its default.
                <pre data-role="codeBlock" data-info="typescript" class="language-typescript"><span class="token punctuation">{</span>
-  direction<span class="token operator">:</span><span class="token builtin">string</span><span class="token operator">=</span><span class="token string">&apos;bottom-right&apos;</span><span class="token punctuation">,</span> <span class="token comment">//one of the four corners (top-left, top-right, bottom-left, bottom-right)</span>
-  autoclose<span class="token operator">:</span><span class="token builtin">boolean</span><span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">//false stops notifications from closing automatically after some time</span>
-  autocloseDuration<span class="token operator">:</span><span class="token builtin">number</span><span class="token operator">=</span><span class="token number">6000</span><span class="token punctuation">,</span> <span class="token comment">//seconds before notification closes by itself</span>
+	direction<span class="token operator">:</span><span class="token builtin">string</span><span class="token operator">=</span><span class="token string">&apos;bottom-right&apos;</span><span class="token punctuation">,</span> <span class="token comment">//one of the four corners (top-left, top-right, bottom-left, bottom-right)</span>
+	autoclose<span class="token operator">:</span><span class="token builtin">boolean</span><span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">//false stops notifications from closing automatically after some time</span>
+	autocloseDuration<span class="token operator">:</span><span class="token builtin">number</span><span class="token operator">=</span><span class="token number">6000</span><span class="token punctuation">,</span> <span class="token comment">//seconds before notification closes by itself</span>
 <span class="token punctuation">}</span>
 </pre>
             </li>
             <li>
-               <code>nf.notify(contentHTML: string, color?: string)</code>
+               <code>notify(contentHTML: string, color?: string)</code>
                <ul>
                   <li>contentHTML is the notification&apos;s content.</li>
-                  <li>color is &apos;yellow&apos; by default (can be &apos;red&apos;, &apos;blue&apos;, &apos;green&apos;, or &apos;yellow&apos;)</li>
-                  <li>returns the notification&apos;s id</li>
+                  <li>color is &apos;yellow&apos; by default. Color can be &apos;red&apos;, &apos;blue&apos;, &apos;green&apos;, or &apos;yellow&apos;.</li>
+                  <li>returns the notification&apos;s id for future referencing</li>
                </ul>
             </li>
-            <li><code>nf.close(id: string)</code> closes the notification with the passed-in id (example below)</li>
-            <li><code>nf.closeAll()</code> removes all the notifications.</li>
-            <li><code>nf.autoclose(onOff: boolean)</code> sets whether a notification will close automatically or not</li>
-            <li><code>nf.autocloseDuration(seconds: number)</code> sets time before a notification closes automatically (default: 6)</li>
+            <li><code>close(id: string)</code> closes the notification with the passed-in id (example in demos section)</li>
+            <li><code>closeAll()</code> closes all the notifications.</li>
          </ul>
-         <h2 class="mume-header" id="demos">Demos</h2>
-         <h4 class="mume-header" id="sandbox-interactive-demo">Interactive Sandbox</h4>
+         <details>
+            <summary><b>Deprecated Features</b></summary>
+            <h3>Legacy Start (Module)</h3>
+            <p>Prior to version 2.0, the only way to use notificationer was by importing it with <code>type=&apos;module&apos;</code>.</p>
+            <pre data-role="codeBlock" data-info="html" class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&apos;</span>module<span class="token punctuation">&apos;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+	<span class="token keyword module">import</span> <span class="token imports"><span class="token operator">*</span> <span class="token keyword module">as</span> nf</span> <span class="token keyword module">from</span> <span class="token string">&apos;https://w.joelgrayson.com/notificationer/module.js&apos;</span><span class="token punctuation">;</span> <span class="token comment">//Import notificationer</span>
+	nf<span class="token punctuation">.</span><span class="token method function property-access">config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//check full documentation for config() options</span>
+	nf<span class="token punctuation">.</span><span class="token method function property-access">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Hello world&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	nf<span class="token punctuation">.</span><span class="token method function property-access">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Success&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;green&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	nf<span class="token punctuation">.</span><span class="token method function property-access">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Confirmation required &lt;button&gt;confirm&lt;/button&gt;&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;red&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre>
+            <p>Result: <img alt="result" src="https://w.joelgrayson.com/image/quick%20start.jpg" height="100px"></p>
+         </details>
+         <h2 class="mume-header" id="interactive-sandbox">Interactive Sandbox</h2>
          <p>Try the code sandbox at <a href="https://w.joelgrayson.com/notificationer/sandbox">https://w.joelgrayson.com/notificationer/sandbox</a>.</p>
-         <iframe src="https://w.joelgrayson.com/notificationer/sandbox" width="800px" height="500px"></iframe>
-         <h4 class="mume-header" id="example-notify-close">Example: Notify() &amp; Close()</h4>
+         <iframe src="https://w.joelgrayson.com/notificationer/sandbox" width="800px" height="450px"></iframe>
+         <h2 class="mume-header" id="examples">Examples</h2>
+         <h3 class="mume-header" id="notify-close">Notify() &amp; Close()</h3>
          <pre data-role="codeBlock" data-info="javascript" class="language-javascript"><span class="token keyword">let</span> errorNotificationId<span class="token operator">=</span>nf<span class="token punctuation">.</span><span class="token method function property-access">notify</span><span class="token punctuation">(</span><span class="token string">&apos;Error&apos;</span><span class="token punctuation">,</span> <span class="token string">&apos;red&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//store notification id</span>
 nf<span class="token punctuation">.</span><span class="token method function property-access">close</span><span class="token punctuation">(</span>errorNotificationId<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//close notification</span>
 </pre>

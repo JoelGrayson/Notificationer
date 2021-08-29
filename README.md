@@ -35,7 +35,7 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start.jpg
 * `closeAll()` closes all the notifications.
 
 <details>
-<summary>Deprecated Features</summary>
+<summary><b>Deprecated Features</b></summary>
 
 ### Legacy Start (Module)
 Prior to version 2.0, the only way to use notificationer was by importing it with `type='module'`.
@@ -54,7 +54,7 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start.jpg
 ## Interactive Sandbox
 Try the code sandbox at https://w.joelgrayson.com/notificationer/sandbox.
 
-<iframe src='https://w.joelgrayson.com/notificationer/sandbox' width='800px' height='500px'></iframe>
+<iframe src='https://w.joelgrayson.com/notificationer/sandbox' width='800px' height='450px'></iframe>
 
 ## Examples
 ### Notify() & Close()

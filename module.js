@@ -4,8 +4,8 @@ let notificationNum=1; //ensures each notification has unique id
 let autocloseOnOff=true;
 let autocloseDurationMillis=6000;
 
-function config(options={}) {
-    options.direction??='bottom-right'; //if options.direction is null (not set), default to 'bottom-right'
+export function config(options={ direction, autoclose, autocloseDuration }) {
+    options.direction??='bottom-right'; //if options.direction is not set, default to 'bottom-right'
     options.autoclose??=true;
     options.autocloseDuration??=6;
 
@@ -31,7 +31,7 @@ function config(options={}) {
     notificationsContainerEl.id='notifications-container';
     document.body.appendChild(notificationsContainerEl);
 }
-function notify(content, color='yellow') {
+export function notify(content, color='yellow') {
     const notificationEl=document.createElement('div');
     let id=`notification-${notificationNum}`
     notificationEl.id=id;
@@ -63,7 +63,7 @@ function notify(content, color='yellow') {
     document.getElementById('notifications-container').appendChild(notificationEl);
     return id;
 }
-function close(id) {
+export function close(id) {
     const notificationEl=document.getElementById(id);
 
     if (xDirection==='left')
@@ -75,7 +75,7 @@ function close(id) {
         notificationEl.parentNode.removeChild(notificationEl);
     }, 500); //remove after transition
 }
-function closeAll() {
+export function closeAll() {
     let notifications=document.getElementsByClassName('notification');
     for (let i=0; i<notifications.length; i++) {
         close(notifications[i].id);

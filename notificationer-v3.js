@@ -4,9 +4,28 @@ let notificationer={
     notificationNum: 1, //ensures each notification has unique id
     autoclose: true,
     autocloseDurationMillis: 6000,
-    configSetup: false, //can be found out using this.configLinks().length===2
+    configSetup: false, //can be found out using `this.configLinks().length===2`
     
-    config: function(options={}) {
+    //Properties
+    set direction(newDirection) {
+        this.xDirection=newDirection.match(/\w+-(\w+)/)[1];
+        //Add in head: <link rel='stylesheet' href='./bottom-left.css'>
+        if (this.configSetup) {
+            document.querySelectorAll(`link[href*='${this.packageUrl}/direction/'`).forEach(el=>{
+                el.parentNode.removeChild(el);
+            });
+        }
+        let directionLinkEl=document.createElement('link');
+        directionLinkEl.rel='stylesheet';
+        directionLinkEl.href=`${this.packageUrl}/direction/${newDirection}.css`;
+        document.head.appendChild(directionLinkEl);
+    },
+    set autocloseDuration(newAutoCloseDuration) {
+        this.autocloseDurationMillis=newAutoCloseDuration*1000;
+    },
+
+    //Methods
+    config: function(options={}) { //not called directly by user, but by program
         if (this.configSetup)
             this.resetConfig(); //removes prior config() for resetting
 
@@ -47,19 +66,6 @@ let notificationer={
         let script=document.querySelectorAll(`script[src*='${packageUrl}/notificationer.js']`)
         script.parentNode.removeChild(script);
     },
-    set direction(newDirection) {
-        this.xDirection=newDirection.match(/\w+-(\w+)/)[1];
-        //Add in head: <link rel='stylesheet' href='./bottom-left.css'>
-        if (this.configSetup) {
-            document.querySelectorAll(`link[href*='${this.packageUrl}/direction/'`).forEach(el=>{
-                el.parentNode.removeChild(el);
-            });
-        }
-        let directionLinkEl=document.createElement('link');
-        directionLinkEl.rel='stylesheet';
-        directionLinkEl.href=`${this.packageUrl}/direction/${newDirection}.css`;
-        document.head.appendChild(directionLinkEl);
-    },
     configLinks: function() {
         return document.querySelectorAll(`link[href*='${this.packageUrl}/']`);
     },
@@ -70,7 +76,11 @@ let notificationer={
             notificationEl.id=id;
             this.notificationNum++;
             notificationEl.classList.add('notification');
-            notificationEl.classList.add(`notification-${color}`); //notification color
+            if (color in ['red', 'yellow', 'green', 'blue'])
+                notificationEl.classList.add(`notification-${color}`); //notification color
+            else {
+                notificationEl.style.backgroundImage=`linear-gradient(${color}, )`;
+            }
             
             let closeIcon=document.createElement('button');
             closeIcon.innerHTML='X';

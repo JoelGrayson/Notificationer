@@ -1,4 +1,4 @@
-# Notificationer
+# Notificationer V2
 > Easily notify your users from client-side JavaScript. It's as simple as calling the function `notify()`.
 
 ## Quick Start
@@ -37,8 +37,8 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start.jpg
 <details>
 <summary><b>Deprecated Features</b></summary>
 
-### Legacy Start (Module)
-Prior to version 2.0, the only way to use notificationer was by importing it with `type='module'`.
+### Legacy Start (V1)
+In version 1, the only way to use notificationer was by importing it with `type='module'`.
 ```html
 <script type='module'>
 	import * as nf from 'https://w.joelgrayson.com/notificationer/module.js'; //Import notificationer

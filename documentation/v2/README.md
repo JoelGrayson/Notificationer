@@ -1,4 +1,4 @@
-# Notificationer V2
+# Notificationer V2 <button><a href='https://w.joelgrayson.com/notificationer'>Select Other Version</a></button>
 > Easily notify your users from client-side JavaScript. It's as simple as calling the function `notify()`.
 
 ## Quick Start

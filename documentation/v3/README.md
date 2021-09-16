@@ -1,5 +1,5 @@
-# Notificationer V3
-> Easily notify your users from client-side JavaScript. It's as simple as calling the function `nf.notify()`.
+# Notificationer V3 <button><a href='https://w.joelgrayson.com/notificationer'>Select Other Version</a></button>
+> Easily notify your users from client-side JavaScript. It's as simple as `nf.notify()`
 
 ## Quick Start
 Add the following script to your HTML file **before** your own script tag(s):
@@ -19,20 +19,22 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start%202
 
 ## Full Documentation
 ### Properties
-* `nf.direction: string` can be set to one of the four corners ('top-left', 'top-right', 'bottom-left', 'bottom-right'). If not set, the default is 'bottom-right'.
+The following properties can be set using `nf.property=newValue`.
+
+* `nf.direction: string` is the corner notifications show up in ('top-left', 'top-right', 'bottom-left', 'bottom-right'). (default: 'bottom-right')
 	```js
 	nf.direction='top-left';
 	nf.notify('I am in the top left');
 	```
-* `nf.autoclose: boolean` can be set to whether or not the notifications close on their own.
+* `nf.autoclose: boolean` determines whether or not notifications close on their own. (default: true)
 	```js
 	nf.autoclose=false;
 	nf.notify('I will not close unless someone clicks (x)');
 	```
-* `nf.autocloseDuration: float` can be set to  the duration before notifications close.
+* `nf.autocloseDuration: float` can be set to the duration before notifications autoclose. (default: 6)
 	```js
 	nf.autocloseDuration=15;
-	nf.notify('I close in 15 seconds');
+	nf.notify('I will close in 15 seconds');
 	```
 
 ### Methods
@@ -50,6 +52,6 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start%202
 
 
 ## Interactive Sandbox
-Try the code sandbox at https://w.joelgrayson.com/notificationer/sandbox.
+Try the code sandbox at https://w.joelgrayson.com/notificationer/sandbox/v3.html.
 
-<iframe src='https://w.joelgrayson.com/notificationer/sandbox' width='800px' height='450px'></iframe>
+<iframe src='https://w.joelgrayson.com/notificationer/sandbox/v3.html' style='width: 80vw; height: 60vh'></iframe>

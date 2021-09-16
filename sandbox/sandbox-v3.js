@@ -17,7 +17,8 @@ for (let i=0; i<runBtns.length; i++)
 
 function run() {
     if (!!document.body.querySelector('#notifications-container')) //notifications container exists
-        document.body.removeChild(document.getElementById('notifications-container')); //remove notifications container (to reset)
+        nf.destroy();
+        // document.body.removeChild(document.getElementById('notifications-container')); //remove notifications container (to reset)
     document.head.innerHTML=defaultHead;
     let editorVal=editor.getValue();
     let startingIndex=editorVal.indexOf('<script>', 2)+'<script>'.length; //exclude `<script>` by adding .length

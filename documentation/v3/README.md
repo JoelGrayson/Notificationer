@@ -11,11 +11,11 @@ Notificationer is now imported in the object `notificationer` or `nf` for short.
 <script src='https://w.joelgrayson.com/notificationer/notificationer-v3.js'></script>
 <script>
 	nf.notify('Hello world');
-	nf.notify('Success', 'green');
+	nf.notify('Success', 'lightgreen');
 	nf.notify('Confirmation required <button>confirm</button>', 'red');
 </script>
 ```
-Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start.jpg' height='100px'>
+Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start%202.jpg' height='100px'>
 
 ## Full Documentation
 ### Properties
@@ -24,20 +24,28 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start.jpg
 	nf.direction='top-left';
 	nf.notify('I am in the top left');
 	```
-* `nf.autocloseDuration: float` can be set to  the duration before notifications close.
 * `nf.autoclose: boolean` can be set to whether or not the notifications close on their own.
+	```js
+	nf.autoclose=false;
+	nf.notify('I will not close unless someone clicks (x)');
+	```
+* `nf.autocloseDuration: float` can be set to  the duration before notifications close.
+	```js
+	nf.autocloseDuration=15;
+	nf.notify('I close in 15 seconds');
+	```
 
 ### Methods
 * `nf.notify(contentHTML: string, color?: string)`
 	* contentHTML is the notification's content.
-	* color is 'yellow' by default. Color can be 'red', 'blue', 'green', or 'yellow'.
+	* color: string can be any css color (eg `'red'`, `'#ff0000'`, `'rgba(255, 0, 0)'`, or `'hsl(0, 100%, 50%)'`)
 	* returns the notification's id for future referencing
 * `nf.close(id: string)` closes the notification with the passed-in id (example in demos section)
 	```js
 	let errorNotificationId=nf.notify('Error', 'red'); //store notification id
 	nf.close(errorNotificationId); //close notification
 	```
-* `nf.closeAll()` closes all the notifications.
+* `nf.closeAll()` closes all the notifications
 * `nf.destroy()` removes notificationer scripts and styles
 
 

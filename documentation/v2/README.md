@@ -52,9 +52,9 @@ Result: <img alt='result' src='https://w.joelgrayson.com/image/quick%20start.jpg
 </details>
 
 ## Interactive Sandbox
-Try the code sandbox at https://w.joelgrayson.com/notificationer/sandbox.
+Try the code sandbox at https://w.joelgrayson.com/notificationer/sandbox/v2.html.
 
-<iframe src='https://w.joelgrayson.com/notificationer/sandbox' width='800px' height='450px'></iframe>
+<iframe src='https://w.joelgrayson.com/notificationer/sandbox/v2.html' width='800px' height='450px'></iframe>
 
 ## Examples
 ### Notify() & Close()

@@ -3,25 +3,25 @@ let notificationer={
     packageUrl: 'https://w.joelgrayson.com/notificationer',
     notificationNum: 1, //ensures each notification has unique id
     autoclose: true,
-    autocloseDurationMillis: 6000,
+    autocloseDuration: 6, //seconds
     configSetup: false, //can be found out using `this.configLinks().length===2`
     
     //Properties
     set direction(newDirection) {
+        if (!this.configSetup) //not set up, so set up
+            this.reconfig();
+
         this.xDirection=newDirection.match(/\w+-(\w+)/)[1];
-        //Add in head: <link rel='stylesheet' href='./bottom-left.css'>
-        if (this.configSetup) {
-            document.querySelectorAll(`link[href*='${this.packageUrl}/direction/'`).forEach(el=>{
+        if (this.configSetup) { //remove all direction css files
+            document.querySelectorAll(`link[href*='${this.packageUrl}/direction-v3/'`).forEach(el=>{
                 el.parentNode.removeChild(el);
             });
         }
+        //Add in head: <link rel='stylesheet' href='./bottom-left.css'>
         let directionLinkEl=document.createElement('link');
         directionLinkEl.rel='stylesheet';
-        directionLinkEl.href=`${this.packageUrl}/direction/${newDirection}.css`;
+        directionLinkEl.href=`${this.packageUrl}/direction-v3/${newDirection}.css`;
         document.head.appendChild(directionLinkEl);
-    },
-    set autocloseDuration(newAutoCloseDuration) {
-        this.autocloseDurationMillis=newAutoCloseDuration*1000;
     },
 
     //Methods
@@ -37,7 +37,7 @@ let notificationer={
         
         this.direction=options.direction;
         this.autoclose=options.autoclose;
-        this.autocloseDuration=options.autocloseDuration*1000;
+        this.autocloseDuration=options.autocloseDuration;
     
         //Add in head: <link rel='stylesheet' href='./notificationer-v3.css'>
         let linkEl=document.createElement('link');
@@ -63,7 +63,7 @@ let notificationer={
     },
     destroy: function() {
         this.resetConfig();
-        let script=document.querySelectorAll(`script[src*='${packageUrl}/notificationer.js']`)
+        let script=document.querySelector(`script[src*='${this.packageUrl}/notificationer']`)
         script.parentNode.removeChild(script);
     },
     configLinks: function() {
@@ -88,30 +88,33 @@ let notificationer={
             if (this.autoclose) {
                 autocloseTimeout=setTimeout(()=>{
                     this.close(id);
-                }, this.autocloseDurationMillis);
+                }, this.autocloseDuration*1000);
             }
             closeIcon.addEventListener('click', ()=>{
                 this.close(id);
                 if (this.autoclose)
                     clearTimeout(autocloseTimeout); //stops timeout() from auto-closing after user already closed
             });
-            notificationEl.appendChild(closeIcon);
             
             const notificationContentEl=document.createElement('span');
             notificationContentEl.classList.add('notification-content');
             notificationContentEl.innerHTML=content;
             notificationEl.appendChild(notificationContentEl);
+            notificationEl.appendChild(closeIcon);
         
             document.getElementById('notifications-container').appendChild(notificationEl);
             return id;
         } else { //if config does not exist yet, call config and re-run the function
-            this.config({
-                direction: this.direction,
-                autoclose: this.autoclose,
-                autocloseDuration: this.autocloseDurationMillis/1000
-            }); //call empty default config()
+            this.reconfig();
             this.notify(content, color);
         }
+    },
+    reconfig() { //reloads config using data from prior config. If no data from prior, uses defualt vals
+        this.config({
+            direction: this.direction,
+            autoclose: this.autoclose,
+            autocloseDuration: this.autocloseDuration
+        });
     },
     close: function(id) {
         const notificationEl=document.getElementById(id);
@@ -132,4 +135,5 @@ let notificationer={
         }
     }
 };
+
 let nf=notificationer; //shorthand alias

@@ -1,0 +1,69 @@
+#notifications-container
+    width: 315px
+    height: 98vh
+    position: absolute
+    pointer-events: none // Allows interaction with elements below notification-container
+    overflow-x: hidden
+#notifications-container *
+    pointer-events: all //Notification is clickable
+
+.notification
+    //background-color: {any color}
+    //border: {same color}
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: space-around
+    margin-top: 6px
+    padding: 15px 15px 15px 10px
+    border-radius: 8px
+    font-size: 18px
+    word-break: break-word
+    transition: left 0.5s, right 0.5s
+.notification::after
+    content: ''
+    position: absolute
+    left: 0
+    background-image: linear-gradient(330deg, rgba(50, 50, 50, 0.4), #35372800)
+    
+    width: 100%
+    height: 100%
+    border-radius: 8px
+    border: 1px solid rgba(3, 3, 34, 0.536)
+
+.notification-content
+    padding-right: 21px //Not collide with [x]
+
+.icon-close
+    position: absolute
+    top: 10px
+    right: 10px
+    border-radius: 100%
+    width: 20px
+    height: 20px
+    display: flex
+    justify-content: center
+    align-items: center
+    border: 1px solid black
+    background-color: red
+    cursor: pointer
+    z-index: 1
+.icon-close:hover
+    background-color: #b60c0c
+    position: absolute //Position not inherited 
+    top: 10px
+    right: 10px
+
+//Built-in colors (antiquated)
+// .notification-yellow
+//     background-image: linear-gradient(134deg, #f9c44d, #ff7905)
+//     border: 1px solid red
+// .notification-green
+//     background-image: linear-gradient(134deg, #64f94d, #00d857)
+//     border: 1px solid green
+// .notification-red
+//     background-image: linear-gradient(134deg, #ff6060, #f43434)
+//     border: 1px solid darkred
+// .notification-blue
+//     background-image: linear-gradient(134deg, #6096FF, #3B7FF9)
+//     border: 1px solid blue

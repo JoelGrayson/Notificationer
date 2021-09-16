@@ -39,10 +39,10 @@ let notificationer={
         this.autoclose=options.autoclose;
         this.autocloseDuration=options.autocloseDuration*1000;
     
-        //Add in head: <link rel='stylesheet' href='./notificationer.css'>
+        //Add in head: <link rel='stylesheet' href='./notificationer-v3.css'>
         let linkEl=document.createElement('link');
         linkEl.rel='stylesheet';
-        linkEl.href=`${this.packageUrl}/notificationer.css`;
+        linkEl.href=`${this.packageUrl}/notificationer-v3.css`;
         document.head.appendChild(linkEl);
         
         /* Creates in body:
@@ -69,18 +69,16 @@ let notificationer={
     configLinks: function() {
         return document.querySelectorAll(`link[href*='${this.packageUrl}/']`);
     },
-    notify(content, color='yellow') {
+    notify(content, color='#ffc23e') {
         if (this.configSetup) {
+            this.notificationNum++;
+
             const notificationEl=document.createElement('div');
             let id=`notification-${this.notificationNum}`;
             notificationEl.id=id;
-            this.notificationNum++;
             notificationEl.classList.add('notification');
-            if (color in ['red', 'yellow', 'green', 'blue'])
-                notificationEl.classList.add(`notification-${color}`); //notification color
-            else {
-                notificationEl.style.backgroundImage=`linear-gradient(${color}, )`;
-            }
+            notificationEl.style.backgroundColor=color; //custom color
+            notificationEl.style.border=`1px solid ${color}`; //custom color
             
             let closeIcon=document.createElement('button');
             closeIcon.innerHTML='X';
@@ -98,7 +96,7 @@ let notificationer={
                     clearTimeout(autocloseTimeout); //stops timeout() from auto-closing after user already closed
             });
             notificationEl.appendChild(closeIcon);
-        
+            
             const notificationContentEl=document.createElement('span');
             notificationContentEl.classList.add('notification-content');
             notificationContentEl.innerHTML=content;

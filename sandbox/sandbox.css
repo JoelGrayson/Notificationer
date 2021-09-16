@@ -10,13 +10,13 @@
     right: 6%;
     left: 6%;
     bottom: 0;
-    height: 18%;
+    height: 9.5rem;
     width: 84%;
     font-family: Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace;
 }
 #bottomRun {
     position: absolute;
-    top: 35%;
+    top: 20rem;
 }
 button {
     border: 1px solid #000;

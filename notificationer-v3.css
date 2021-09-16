@@ -1,5 +1,5 @@
 #notifications-container {
-  width: 315px;
+  width: 32vw;
   height: 98vh;
   position: absolute;
   pointer-events: none;
@@ -19,6 +19,7 @@
   padding: 15px 15px 15px 10px;
   border-radius: 8px;
   font-size: 18px;
+  max-width: 88%;
   word-break: break-word;
   transition: left 0.5s, right 0.5s;
 }

@@ -1,0 +1,12 @@
+#notifications-container {
+    bottom: 15px;
+    right: 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.notification {
+    right: 15px; /* For transition */
+}

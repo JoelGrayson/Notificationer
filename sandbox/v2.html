@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>Notificationer V2.1 Code Sandbox</title>
+    <link rel='stylesheet' href='sandbox.css'>
+</head>
+<body>
+    <div style='padding: 10px 5%'>
+        <h1>Notificationer V2.1 Code Sandbox</h1>
+        <p>Write code in the editor and click <button class='runBtn'>Run</button></p>
+        <div id='container'>
+            <pre id='editor'>&lt;script src=&apos;https://w.joelgrayson.com/notificationer/notificationer-v2.js&apos;&gt;&lt;/script&gt;
+&lt;script&gt;
+    config();
+    notify('Hello world');
+    notify('Success', 'green');
+    notify('Confirmation required &lt;button&gt;confirm&lt;/button&gt;', 'red');
+&lt;/script&gt;</pre>
+            <br>
+            <button class='runBtn' id='bottomRun'>Run</button>
+        </div>
+    </div>
+    <script src='https://w.joelgrayson.com/notificationer/notificationer-v2.js'></script>
+    <script src='./ace-builds/src-min-noconflict/ace.js' type='text/javascript' charset='utf-8'></script>
+    <script src='./ace-builds/src-noconflict/keybinding-vscode.js' type='text/javascript' charset='utf-8'></script>
+    <script src='./sandbox-v2.js'></script>
+</body>
+</html>
